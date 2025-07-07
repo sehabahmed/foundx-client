@@ -4,11 +4,10 @@ import Link from "next/link";
 import Container from "../../UI/Container";
 import { getRecentPosts } from "@/src/services/RecentPosts";
 
-
 const RecentPosts = async () => {
-  const data = await getRecentPosts();
+  const { data: posts } = await getRecentPosts();
 
-  console.log("data", data);
+  console.log("posts", posts);
 
   return (
     <Container>
@@ -19,7 +18,9 @@ const RecentPosts = async () => {
         </p>
       </div>
       <div className="my-8 grid justify-center gap-10 sm:grid-cols-1 md: grid-cols-2 lg:grid-cols-3">
-        <h1>Recent Posts</h1>
+        {posts.map((post: any) => (
+          <h1 key={post._id}>{post.title}</h1>
+        ))}
       </div>
       <div className="flex justify-center">
         <Button className="rounded-md bg-default-900 text-default">
