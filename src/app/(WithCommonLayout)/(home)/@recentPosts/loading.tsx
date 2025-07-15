@@ -1,15 +1,10 @@
 import Link from "next/link";
 import { Button } from "@heroui/button";
 
-import Container from "../../UI/Container";
-import Card from "../../UI/Card";
-
-import { getRecentPosts } from "@/src/services/RecentPosts";
-import { TPost } from "@/src/types";
+import Container from "@/src/components/UI/Container";
+import CardSkeleton from "@/src/components/UI/CardSkeleton";
 
 const RecentPosts = async () => {
-  const { data: posts } = await getRecentPosts();
-
   return (
     <Container>
       <div className="section-title my-8">
@@ -19,8 +14,8 @@ const RecentPosts = async () => {
         </p>
       </div>
       <div className="my-8 grid justify-center gap-8 grid-cols-3">
-        {posts.map((post: TPost) => (
-          <Card key={post?._id} post={post} />
+        {[...Array(9)].map((_, index) => (
+          <CardSkeleton key={index} />
         ))}
       </div>
       <div className="flex justify-center">

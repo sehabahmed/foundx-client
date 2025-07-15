@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { Button } from "@heroui/button";
 
-import Container from "../../UI/Container";
-import Card from "../../UI/Card";
-
 import { getRecentPosts } from "@/src/services/RecentPosts";
 import { TPost } from "@/src/types";
+import Container from "@/src/components/UI/Container";
+import Card from "@/src/components/UI/Card";
 
 const RecentPosts = async () => {
   const { data: posts } = await getRecentPosts();
@@ -14,6 +13,7 @@ const RecentPosts = async () => {
     <Container>
       <div className="section-title my-8">
         <h2 className="mb-2 text-center text-2xl">Recently Found Items</h2>
+
         <p className="text-center">
           A list of items that have been recently found and reported.
         </p>
