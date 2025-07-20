@@ -282,7 +282,7 @@
     "@react-aria/utils" "3.29.1"
     "@react-types/shared" "3.30.0"
 
-"@heroui/button@2.2.23":
+"@heroui/button@2.2.23", "@heroui/button@^2.2.23":
   version "2.2.23"
   resolved "https://registry.yarnpkg.com/@heroui/button/-/button-2.2.23.tgz#229401ebfded4e2a43b183d0bbf69f2ca8b2435b"
   integrity sha512-8jvlcVVoJOfjdBm84WHOT2A6bJ8tiT6e0qgzKvSmZrKMgR8T3szkJZR+NkRDOYHuHn3tn6jolfLGpM3ybN5p3g==
