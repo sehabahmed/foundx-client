@@ -17,11 +17,11 @@ export function middleware(request: NextRequest) {
 
   console.log(pathname);
 
-//   const user = {
-//     name: "sehab",
-//     token: "abc def",
-//     role: "ADMIN",
-//   };
+  // const user = {
+  //   name: "sehab",
+  //   token: "abc def",
+  //   role: "ADMIN",
+  // };
 
     const user = undefined;
 
@@ -39,7 +39,6 @@ export function middleware(request: NextRequest) {
     if (routes.some((route) => pathname.match(route))) {
       return NextResponse.next();
     }
-
   }
 
   return NextResponse.redirect(new URL("/", request.url));
