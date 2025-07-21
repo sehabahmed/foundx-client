@@ -1,12 +1,15 @@
+"use client";
+
 import FxForm from "@/src/components/form/FxForm";
 import FXInput from "@/src/components/form/FXInput";
 import { Button } from "@heroui/button";
-import { Input } from "@heroui/input";
 import { Link } from "@heroui/link";
 import React from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import loginValidationSchema from "@/src/components/schemas/login.schema";
 
 export default function page() {
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     console.log(data);
   };
 
@@ -15,18 +18,22 @@ export default function page() {
       <h2 className="text-2xl text-center font-bold">Login with FoundX</h2>
       <p className="mb-4">Welcome Back! Let&lsquo;s Get Started</p>
       <div className="w-[35%]">
-        <FxForm onSubmit={onSubmit}>
+        <FxForm
+          onSubmit={onSubmit}
+          resolver={zodResolver(loginValidationSchema)}
+        >
           <div className="py-3">
             <FXInput label="Email" name="email" type="email" />
           </div>
           <div className="py-3">
-            <FXInput label="Password" name="email" type="password" />
+            <FXInput label="Password" name="password" type="password" />
           </div>
 
           <Button
             className="w-full my-3 font-semibold bg-default-900 text-default"
             radius="sm"
             size="lg"
+            type="submit"
           >
             Login
           </Button>

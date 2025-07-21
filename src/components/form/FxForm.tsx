@@ -1,5 +1,7 @@
+"use client";
+
 import { ReactNode } from "react";
-import { Form, FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 
 interface formConfig {
   defaultValues?: Record<string, any>;
@@ -17,8 +19,6 @@ export default function FxForm({
   defaultValues,
   resolver,
 }: IProps) {
-  const methods = useForm();
-
   const formConfig: formConfig = {};
 
   if (!!defaultValues) {
@@ -29,11 +29,13 @@ export default function FxForm({
     formConfig["resolver"] = resolver;
   }
 
+  const methods = useForm(formConfig);
+
   const submitHandler = methods.handleSubmit;
 
   return (
     <FormProvider {...methods}>
-      <Form onSubmit={() => submitHandler(onSubmit)}>{children}</Form>
+      <form onSubmit={submitHandler(onSubmit)}>{children}</form>
     </FormProvider>
   );
 }

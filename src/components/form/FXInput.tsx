@@ -1,3 +1,5 @@
+"use client";
+
 import { Input } from "@heroui/input";
 import { useFormContext } from "react-hook-form";
 
@@ -18,11 +20,17 @@ export default function FXInput({
   label,
   name,
 }: IProps) {
-  const { register } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+console.log(errors)
 
   return (
     <Input
       {...register(name)}
+      errorMessage={errors[name] ? (errors[name].message as string) : ""}
+      isInvalid={!!errors[name]}
       label={label}
       required={required}
       size={size}
