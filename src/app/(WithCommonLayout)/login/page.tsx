@@ -7,9 +7,10 @@ import { Link } from "@heroui/link";
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import loginValidationSchema from "@/src/components/schemas/login.schema";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 
 export default function page() {
-  const onSubmit = (data: any) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data: any) => {
     console.log(data);
   };
 

@@ -6,11 +6,19 @@ import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import loginValidationSchema from "@/src/components/schemas/login.schema";
 import registerValidationSchema from "@/src/components/schemas/register.schema";
+import { FieldValues, SubmitHandler } from "react-hook-form";
+import { registerUser } from "@/src/services/AuthService";
 
 export default function page() {
-  const onSubmit = (data: any) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data: any) => {
+    const userData = {
+      ...data,
+      profilePhoto:
+        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+    };
+
+    registerUser(userData);
     console.log(data);
   };
 
@@ -58,4 +66,3 @@ export default function page() {
     </div>
   );
 }
-
