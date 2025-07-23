@@ -9,8 +9,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import registerValidationSchema from "@/src/components/schemas/register.schema";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { registerUser } from "@/src/services/AuthService";
+import { useMutation } from "@tanstack/react-query";
+import { useUserRegistration } from "../../hook/auth.hook";
 
 export default function page() {
+  const { mutate: handleUserRegistration } = useUserRegistration();
+
   const onSubmit: SubmitHandler<FieldValues> = (data: any) => {
     const userData = {
       ...data,
@@ -18,7 +22,7 @@ export default function page() {
         "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
     };
 
-    registerUser(userData);
+    handleUserRegistration(userData);
     console.log(data);
   };
 

@@ -1,8 +1,8 @@
 "use server";
+import { FieldValues } from "react-hook-form";
+import { cookies } from "next/headers";
 
 import axiosInstance from "@/src/lib/AxiosInstance";
-import { cookies } from "next/headers";
-import { FieldValues } from "react-hook-form";
 
 export const registerUser = async (userData: FieldValues) => {
   try {
@@ -14,6 +14,8 @@ export const registerUser = async (userData: FieldValues) => {
       cookieStore.set("accessToken", data?.data?.accessToken);
       cookieStore.set("refreshToken", data?.data?.refreshToken);
     }
+
+    return data;
   } catch (error: any) {
     throw new Error(error);
   }
