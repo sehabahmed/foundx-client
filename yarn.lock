@@ -983,7 +983,7 @@
     "@heroui/system" "2.4.18"
     "@heroui/system-rsc" "2.3.15"
 
-"@heroui/spinner@2.2.20":
+"@heroui/spinner@2.2.20", "@heroui/spinner@^2.2.20":
   version "2.2.20"
   resolved "https://registry.yarnpkg.com/@heroui/spinner/-/spinner-2.2.20.tgz#583958c6a6e45a8fb424fa4f381a21008cc5a45f"
   integrity sha512-pn0FKWXFdrXLCYf9eLkUGINrHDpSzvC2MvEbMZ3fLMl9jHlUuqgcDCj1F9e4aZ4btPiAMaRfjCi04JPNe8dvjg==
@@ -4610,6 +4610,11 @@ json5@^1.0.2:
     object.assign "^4.1.4"
     object.values "^1.1.6"
 
+jwt-decode@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-4.0.0.tgz#2270352425fd413785b2faf11f6e755c5151bd4b"
+  integrity sha512-+KJGIyHgkGuIq3IEBNftfhW/LfWhXUIY6OmyVWjliu5KH1y0fw7VQ8YndE2O4qZdMSd9SqbnC8GOcZEy0Om7sA==
+
 keyv@^4.5.4:
   version "4.5.4"
   resolved "https://registry.npmjs.org/keyv/-/keyv-4.5.4.tgz"
@@ -5388,6 +5393,11 @@ simple-swizzle@^0.2.2:
   integrity sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==
   dependencies:
     is-arrayish "^0.3.1"
+
+sonner@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/sonner/-/sonner-2.0.6.tgz#623b73faec55229d63ec35226d42021f2119bfa7"
+  integrity sha512-yHFhk8T/DK3YxjFQXIrcHT1rGEeTLliVzWbO0xN8GberVun2RiBnxAjXAYpZrqwEVHBG9asI/Li8TAAhN9m59Q==
 
 source-map-js@^1.0.2, source-map-js@^1.2.1:
   version "1.2.1"

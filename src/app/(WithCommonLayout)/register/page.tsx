@@ -8,12 +8,10 @@ import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import registerValidationSchema from "@/src/components/schemas/register.schema";
 import { FieldValues, SubmitHandler } from "react-hook-form";
-import { registerUser } from "@/src/services/AuthService";
-import { useMutation } from "@tanstack/react-query";
 import { useUserRegistration } from "../../hook/auth.hook";
 
-export default function page() {
-  const { mutate: handleUserRegistration } = useUserRegistration();
+export default function RegisterPage() {
+  const { mutate: handleUserRegistration, isPending } = useUserRegistration();
 
   const onSubmit: SubmitHandler<FieldValues> = (data: any) => {
     const userData = {
@@ -25,6 +23,10 @@ export default function page() {
     handleUserRegistration(userData);
     console.log(data);
   };
+
+  if (isPending) {
+    <h2>Loading........</h2>;
+  }
 
   return (
     <div className="flex h-[calc(100vh-200px)] w-full flex-col items-center justify-center">
