@@ -4,21 +4,34 @@ import FxForm from "@/src/components/form/FxForm";
 import FXInput from "@/src/components/form/FXInput";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import loginValidationSchema from "@/src/components/schemas/login.schema";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { Spinner } from "@heroui/react";
 import { useUserLogin } from "../../hook/auth.hook";
 import Loading from "@/src/components/UI/Loading";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function LoginPage() {
-  const { mutate: handleUserLogin, isPending } = useUserLogin();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect");
+  const router = useRouter();
+  const { mutate: handleUserLogin, isPending, isSuccess } = useUserLogin();
 
   const onSubmit: SubmitHandler<FieldValues> = (data: any) => {
     handleUserLogin(data);
-    
   };
+
+  useEffect(() => {
+    if (!isPending && isSuccess) {
+      if (redirect) {
+        return router.push(redirect as string);
+      } else {
+        return router.push("/");
+      }
+    }
+  }, [isPending, isSuccess]);
 
   return (
     <>

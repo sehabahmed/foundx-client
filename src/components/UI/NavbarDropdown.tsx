@@ -1,5 +1,6 @@
 "use client";
 
+import { logOut } from "@/src/services/AuthService";
 import { Avatar } from "@heroui/avatar";
 import {
   Dropdown,
@@ -41,8 +42,13 @@ export default function NavbarDropdown() {
           Create Post
         </DropdownItem>
 
-        <DropdownItem key="delete" className="text-danger" color="danger">
-          Delete file
+        <DropdownItem
+          onClick={() => logOut()}
+          key="delete"
+          className="text-danger"
+          color="danger"
+        >
+          Log Out
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>

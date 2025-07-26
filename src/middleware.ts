@@ -16,25 +16,15 @@ const roleBaseRoutes = {
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  console.log(pathname);
-
-  const decodedUser = await getCurrentUser();
-
-  console.log(decodedUser);
-
-  // const user = {
-  //   name: "sehab",
-  //   token: "abc def",
-  //   role: "ADMIN",
-  // };
-
-  const user = undefined;
+  const user = await getCurrentUser();
 
   if (!user) {
     if (AuthRoutes.includes(pathname)) {
       return NextResponse.next();
     } else {
-      return NextResponse.redirect(new URL("/login", request.url));
+      return NextResponse.redirect(
+        new URL(`/login?redirect=${pathname}`, request.url)
+      );
     }
   }
 
@@ -51,5 +41,5 @@ export async function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/profile", "/admin", "/register", "/login"],
+  matcher: ["/profile", "/profile/:page*", "/admin", "/register", "/login"],
 };
