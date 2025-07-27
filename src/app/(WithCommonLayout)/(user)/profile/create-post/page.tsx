@@ -1,7 +1,8 @@
 "use client";
 
 import FXInput from "@/src/components/form/FXInput";
-import { Button, Divider } from "@heroui/react";
+import { Button } from "@heroui/button";
+import { Divider } from "@heroui/react";
 import {
   FieldValues,
   FormProvider,
@@ -41,7 +42,7 @@ export default function CreatePost() {
 
           <div className="flex justify-between items-center">
             <p>Owner verification questions</p>
-            <Button onClick={() => handleFieldAppend()}>Append</Button>
+            <Button onPress={() => handleFieldAppend()}>Append</Button>
           </div>
 
           <div className="grid gap-3">
@@ -51,7 +52,7 @@ export default function CreatePost() {
                 key={field.id}
               >
                 <FXInput name={`questions.${index}.value`} label="Question" />
-                <Button onClick={() => remove(index)}>Remove</Button>
+                <Button onPress={() => remove(index)}>Remove</Button>
               </div>
             ))}
           </div>

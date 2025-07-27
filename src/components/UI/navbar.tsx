@@ -19,6 +19,7 @@ import { ThemeSwitch } from "@/src/components/UI/theme-switch";
 import { Logo } from "@/src/components/icons";
 import NavbarDropdown from "./NavbarDropdown";
 import { useUser } from "@/src/context/user.provider";
+import { Button } from "@heroui/button";
 
 export const Navbar = () => {
   const { user } = useUser();
@@ -62,7 +63,11 @@ export const Navbar = () => {
             <NavbarDropdown />
           </NavbarItem>
         ) : (
-          <Link href="/login">Login</Link>
+          <Link href="/login">
+            <Button className="p-4 bg-default-200 text-black dark:text-white">
+              Login
+            </Button>
+          </Link>
         )}
       </NavbarContent>
 
