@@ -1,5 +1,6 @@
 "use client";
 
+import { useUser } from "@/src/context/user.provider";
 import { logOut } from "@/src/services/AuthService";
 import { Avatar } from "@heroui/avatar";
 import {
@@ -12,6 +13,12 @@ import { useRouter } from "next/navigation";
 
 export default function NavbarDropdown() {
   const router = useRouter();
+  const { setIsLoading: userLoading, user } = useUser();
+
+  const handleLogout = () => {
+    logOut();
+    userLoading(true);
+  };
 
   const handleNavigation = (pathname: string) => {
     router.push(pathname);
@@ -20,7 +27,7 @@ export default function NavbarDropdown() {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Avatar className="cursor-pointer" name="Joe" />
+        <Avatar className="cursor-pointer" src={user?.profilePhoto} />
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions">
         <DropdownItem
@@ -43,7 +50,7 @@ export default function NavbarDropdown() {
         </DropdownItem>
 
         <DropdownItem
-          onClick={() => logOut()}
+          onClick={() => handleLogout()}
           key="delete"
           className="text-danger"
           color="danger"

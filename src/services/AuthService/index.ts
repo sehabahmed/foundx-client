@@ -8,11 +8,10 @@ import axiosInstance from "@/src/lib/AxiosInstance";
 
 export const registerUser = async (userData: FieldValues) => {
   try {
+    const cookieStore = await cookies();
     const { data } = await axiosInstance.post("/auth/register", userData);
 
     if (data.success) {
-      const cookieStore = await cookies();
-
       cookieStore.set("accessToken", data?.data?.accessToken);
       cookieStore.set("refreshToken", data?.data?.refreshToken);
     }
@@ -41,12 +40,15 @@ export const loginUser = async (userData: FieldValues) => {
 };
 
 export const logOut = async () => {
-  cookies().delete("accessToken");
-  cookies().delete("refreshToken");
-}
+  const cookieStore = await cookies();
+
+  cookieStore.delete("accessToken");
+  cookieStore.delete("refreshToken");
+};
 
 export const getCurrentUser = async () => {
-  const accessToken = cookies().get("accessToken")?.value;
+  const cookieStore = await cookies();
+  const accessToken = cookieStore.get("accessToken")?.value;
 
   let decodedToken = null;
 
@@ -60,6 +62,7 @@ export const getCurrentUser = async () => {
       mobileNumber: decodedToken.mobileNumber,
       role: decodedToken.role,
       status: decodedToken.status,
+      profilePhoto: decodedToken.profilePhoto,
     };
   }
 

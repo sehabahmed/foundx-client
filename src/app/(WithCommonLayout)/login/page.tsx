@@ -12,15 +12,18 @@ import { Spinner } from "@heroui/react";
 import { useUserLogin } from "../../hook/auth.hook";
 import Loading from "@/src/components/UI/Loading";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useUser } from "@/src/context/user.provider";
 
 export default function LoginPage() {
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect");
   const router = useRouter();
   const { mutate: handleUserLogin, isPending, isSuccess } = useUserLogin();
+  const { setIsLoading: userLoading } = useUser();
 
   const onSubmit: SubmitHandler<FieldValues> = (data: any) => {
     handleUserLogin(data);
+    userLoading(true);
   };
 
   useEffect(() => {
