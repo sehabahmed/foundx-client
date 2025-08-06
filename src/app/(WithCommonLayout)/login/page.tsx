@@ -1,17 +1,18 @@
 "use client";
 
-import FxForm from "@/src/components/form/FxForm";
-import FXInput from "@/src/components/form/FXInput";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import React, { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import loginValidationSchema from "@/src/components/schemas/login.schema";
 import { FieldValues, SubmitHandler } from "react-hook-form";
-import { Spinner } from "@heroui/react";
-import { useUserLogin } from "../../hook/auth.hook";
-import Loading from "@/src/components/UI/Loading";
 import { useRouter, useSearchParams } from "next/navigation";
+
+import { useUserLogin } from "../../hook/auth.hook";
+
+import Loading from "@/src/components/UI/Loading";
+import loginValidationSchema from "@/src/components/schemas/login.schema";
+import FXInput from "@/src/components/form/FXInput";
+import FxForm from "@/src/components/form/FxForm";
 import { useUser } from "@/src/context/user.provider";
 
 export default function LoginPage() {
@@ -44,8 +45,8 @@ export default function LoginPage() {
         <p className="mb-4">Welcome Back! Let&lsquo;s Get Started</p>
         <div className="w-[35%]">
           <FxForm
-            onSubmit={onSubmit}
             resolver={zodResolver(loginValidationSchema)}
+            onSubmit={onSubmit}
           >
             <div className="py-3">
               <FXInput label="Email" name="email" type="email" />

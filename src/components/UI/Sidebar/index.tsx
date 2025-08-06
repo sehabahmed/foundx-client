@@ -2,10 +2,12 @@
 
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
+import { Image } from "@heroui/react";
+
 import SidebarOptions from "./SidebarOptions";
 import { adminLinks, userLinks } from "./Constants";
+
 import { useUser } from "@/src/context/user.provider";
-import { Image } from "@heroui/react";
 
 const Sidebar = () => {
   const { user } = useUser();

@@ -1,7 +1,5 @@
 "use client";
 
-import { useUser } from "@/src/context/user.provider";
-import { logOut } from "@/src/services/AuthService";
 import { Avatar } from "@heroui/avatar";
 import {
   Dropdown,
@@ -9,15 +7,25 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "@heroui/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+
+import { protectedRoutes } from "@/src/constant";
+import { useUser } from "@/src/context/user.provider";
+import { logOut } from "@/src/services/AuthService";
 
 export default function NavbarDropdown() {
   const router = useRouter();
   const { setIsLoading: userLoading, user } = useUser();
 
+  const pathname = usePathname();
+
   const handleLogout = () => {
     logOut();
     userLoading(true);
+
+    if (protectedRoutes.some((route) => pathname.match(route))) {
+      router.push("/");
+    }
   };
 
   const handleNavigation = (pathname: string) => {
@@ -31,29 +39,29 @@ export default function NavbarDropdown() {
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions">
         <DropdownItem
-          onClick={() => handleNavigation("/profile")}
           key="profile"
+          onClick={() => handleNavigation("/profile")}
         >
           Profile
         </DropdownItem>
         <DropdownItem
-          onClick={() => handleNavigation("/profile/settings")}
           key="settings"
+          onClick={() => handleNavigation("/profile/settings")}
         >
           Settings
         </DropdownItem>
         <DropdownItem
-          onClick={() => handleNavigation("/profile/create-post")}
           key="post"
+          onClick={() => handleNavigation("/profile/create-post")}
         >
           Create Post
         </DropdownItem>
 
         <DropdownItem
-          onClick={() => handleLogout()}
           key="delete"
           className="text-danger"
           color="danger"
+          onClick={() => handleLogout()}
         >
           Log Out
         </DropdownItem>

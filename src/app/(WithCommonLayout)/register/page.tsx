@@ -1,14 +1,16 @@
 "use client";
 
-import FxForm from "@/src/components/form/FxForm";
-import FXInput from "@/src/components/form/FXInput";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import registerValidationSchema from "@/src/components/schemas/register.schema";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+
 import { useUserRegistration } from "../../hook/auth.hook";
+
+import registerValidationSchema from "@/src/components/schemas/register.schema";
+import FXInput from "@/src/components/form/FXInput";
+import FxForm from "@/src/components/form/FxForm";
 
 export default function RegisterPage() {
   const { mutate: handleUserRegistration, isPending } = useUserRegistration();
@@ -40,8 +42,8 @@ export default function RegisterPage() {
             mobileNumber: "0178787878",
             password: "123456",
           }}
-          onSubmit={onSubmit}
           resolver={zodResolver(registerValidationSchema)}
+          onSubmit={onSubmit}
         >
           <div className="py-3">
             <FXInput label="Name" name="name" type="text" />

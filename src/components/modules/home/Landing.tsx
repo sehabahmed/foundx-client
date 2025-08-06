@@ -1,6 +1,6 @@
 import { Input } from "@heroui/input";
 
-import { SearchIcon } from "../../icons";
+import { SearchIcon } from "../../../assets/icons";
 
 const Landing = () => {
   return (

@@ -1,6 +1,7 @@
 import type { NextRequest } from "next/server";
 
 import { NextResponse } from "next/server";
+
 import { getCurrentUser } from "./services/AuthService";
 
 const AuthRoutes = ["/register", "/login"];
@@ -12,7 +13,6 @@ const roleBaseRoutes = {
   ADMIN: [/^\/admin/],
 };
 
-// This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -23,7 +23,7 @@ export async function middleware(request: NextRequest) {
       return NextResponse.next();
     } else {
       return NextResponse.redirect(
-        new URL(`/login?redirect=${pathname}`, request.url)
+        new URL(`/login?redirect=${pathname}`, request.url),
       );
     }
   }

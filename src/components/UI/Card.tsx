@@ -7,8 +7,8 @@ import {
   Card as HeroUICard,
   Image,
 } from "@heroui/react";
-
 import { format } from "date-fns";
+
 import { TPost } from "../../types";
 
 export default function Card({ post }: { post: TPost }) {
