@@ -22,7 +22,7 @@ interface IProps {
     | "shadow"
     | "ghost"
     | undefined;
-  buttonClassName: string;
+  buttonClassName?: string;
 }
 
 export default function FXModal({

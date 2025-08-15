@@ -14,14 +14,17 @@ import { TPost, TUser } from "@/src/types";
 import ImageGallery from "./ImageGallery";
 import ClaimRequestModal from "../../modules/home/modals/ClaimRequestModal";
 import Link from "next/link";
+import { useUser } from "@/src/context/user.provider";
+import AuthenticationModal from "../../modules/home/modals/AuthenticationModal";
 
 interface IProps {
   post: TPost;
 }
 
 export default function Post({ post }: IProps) {
-  const { _id, title, images, description, city, location, dateFound, user, questions } =
-    post || {};
+  const { _id, title, images, user, questions } = post || {};
+
+  const { user: loggedInUser } = useUser();
 
   const { name, email, profilePhoto } = (user as TUser) || {};
 
@@ -43,16 +46,24 @@ export default function Post({ post }: IProps) {
       <Divider />
       <CardBody>
         <Link href={`/found-items/${_id}`}>
-        
-        <p>{title}</p>
+          <p>{title}</p>
         </Link>
         <ImageGallery images={images} />
       </CardBody>
       <Divider />
       <CardFooter>
         <div className="flex gap-5 w-full">
-          <ClaimRequestModal id={_id} questions={questions}  />
-          <div className="w-[1px] bg-default-200 " />
+          {email !== loggedInUser?.email && (
+            <>
+              {loggedInUser && (
+                <ClaimRequestModal id={_id} questions={questions} />
+              )}
+              {!loggedInUser && <AuthenticationModal id={_id} />}
+            </>
+          )}
+          {email !== loggedInUser?.email && (
+            <div className="w-[1px] bg-default-200 " />
+          )}
           <Button className="flex-1" variant="light">
             Share
           </Button>

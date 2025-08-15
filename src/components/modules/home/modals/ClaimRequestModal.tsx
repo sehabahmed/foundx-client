@@ -4,6 +4,8 @@ import FxForm from "@/src/components/form/FxForm";
 import FXInput from "@/src/components/form/FXInput";
 import FXTextArea from "@/src/components/form/FXTextArea";
 import { Button } from "@heroui/button";
+import { FieldValues, SubmitHandler } from "react-hook-form";
+import { useAddClaimRequest } from "@/src/app/hook/claimRequest.hook";
 
 interface IProps {
   id: string;
@@ -11,8 +13,18 @@ interface IProps {
 }
 
 export default function ClaimRequestModal({ id, questions }: IProps) {
-  const onSubmit = (data) => {
-    console.log(data);
+  const { mutate: handleClaimRequest, isPending } = useAddClaimRequest();
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const claimRequestData = {
+      item: id,
+      description: data.description,
+      answers: Object.keys(data)
+        .filter((formElement) => formElement.startsWith("answer"))
+        .map((answer) => data[answer]),
+    };
+
+    handleClaimRequest(claimRequestData);
   };
 
   return (
@@ -33,7 +45,9 @@ export default function ClaimRequestModal({ id, questions }: IProps) {
         ))}
         <FXTextArea label="Description" name="description" />
         <div>
-          <Button className="w-full my-4" size="lg" type="submit">Send</Button>
+          <Button className="w-full my-4" size="lg" type="submit">
+            {isPending ? "Sending..." : "Send"}
+          </Button>
         </div>
       </FxForm>
     </FXModal>

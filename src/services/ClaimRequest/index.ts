@@ -14,3 +14,16 @@ export const addClaimRequest = async (
     throw new Error(error);
   }
 };
+
+export const getReceivedClaimRequest = async () => {
+  try {
+    const res = await axiosInstance.get(
+      "/claim-request/received-claim-request"
+    );
+
+    return res.data;
+  } catch (error: any) {
+    console.log("Failed to fetch data: ", error);
+    throw new Error("Failed to Fetch Data");
+  }
+};
