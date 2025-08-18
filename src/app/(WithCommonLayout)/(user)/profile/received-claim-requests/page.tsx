@@ -18,7 +18,7 @@ export default function ReceivedClaimRequest() {
         ))
       ) : (
         <div className="min-h-screen w-full items-center justify-center">
-          <h1 className="text-4xl">Claim Request Received!</h1>
+          <h1 className="text-4xl">No Claim request has found!</h1>
         </div>
       )}
     </>

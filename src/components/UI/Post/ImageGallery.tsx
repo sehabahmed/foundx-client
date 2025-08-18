@@ -15,7 +15,11 @@ interface IProps {
   images: string[];
 }
 
-export default function ImageGallery({ images }: IProps) {
+export default function ImageGallery({ images = [] }: IProps) {
+  if (!images || images.length === 0) {
+    return null;
+  }
+
   const isSingleImage = images.length === 1;
 
   return (

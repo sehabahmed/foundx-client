@@ -12,10 +12,10 @@ import {
 
 import { TPost, TUser } from "@/src/types";
 import ImageGallery from "./ImageGallery";
-import ClaimRequestModal from "../../modules/home/modals/ClaimRequestModal";
+import ClaimRequestModal from "../../modals/ClaimRequestModal";
 import Link from "next/link";
 import { useUser } from "@/src/context/user.provider";
-import AuthenticationModal from "../../modules/home/modals/AuthenticationModal";
+import AuthenticationModal from "../../modals/AuthenticationModal";
 
 interface IProps {
   post: TPost;

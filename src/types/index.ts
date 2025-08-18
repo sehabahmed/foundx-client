@@ -96,5 +96,17 @@ export interface IClaimant {
 }
 
 export interface IReceiveClaimRequests extends TPost {
-  claimRequest: TClaimRequest[];
+  claimRequests: TClaimRequest[];
+}
+
+export interface ISearchResult {
+  title: string;
+  description: string;
+  thumbnail: string;
+  id: string;
+}
+
+export interface ICategory {
+  _id: string;
+  name: string;
 }
